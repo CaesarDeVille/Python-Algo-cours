@@ -13,7 +13,7 @@ ballRadius = 5
 #ici on definit la fonction setup qui sera exécuté comme point d'entré dans mon code
 def setup():
     global ballX, ballY, rackX, rackY, rackW, rackH
-    
+    #noCursor()
     #on appel la fonction print pour écrire dans la console
     print("Hello World")
     #on definit la taille de la fenêtre
@@ -78,3 +78,5 @@ def drawBall():
 
     #draw circle
     #circle(ballX, ballY, 2*ballRadius)
+    #cos90° : 0 pour x.
+#Ajouter notion d'angle avec calcul mathématique.
