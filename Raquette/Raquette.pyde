@@ -3,7 +3,7 @@ ballY = 0
 
 rackX = 0
 rackY = 0
-rackW = 120
+rackW = 125
 rackH = 10
 
 BSpeedX = 5
