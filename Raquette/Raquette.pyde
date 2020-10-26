@@ -1,15 +1,15 @@
 ballX = 0
 ballY = 0
 
-Bspeed = 0.2
+Bspeed = 0.3
 bSpeedX = 0
 bSpeedY = 0
 Bangle = PI/5
 
-ballRadius = 2
+ballRadius = 5
 BangleMax = PI/1.9
 
-rackW = 100
+rackW = 250
 rackH = 10
 rackX = 0
 rackY = 0
@@ -50,7 +50,11 @@ def draw():
     
     drawRacket ()
     drawBall ()
-    drawBricks ()
+    
+    i = 0
+    for i in range (10):
+        drawBricks (i*50, 50, 50, 20)
+    
 
     
 def drawRacket():
@@ -83,7 +87,7 @@ def drawBall():
     elif(ballY+ballRadius > height):
         Bangle = -Bangle
         ballY = height-ballRadius
-        rackW = rackW-10
+        rackW = rackW*0.8
     
     #droite et gauche
     if(ballX+ballRadius > width):
@@ -103,30 +107,28 @@ def drawBall():
 
     #draw circle
     circle(ballX, ballY, 2*ballRadius)
-
-def drawBricks():
+    
+#une fonction peut prendre des paramètres.
+def drawBricks(bX, bY, bW, bH):
     
     global ballX, ballY, ballRadius, bSpeedX, bSpeedY, Bangle
     fill(1 , 162, 253)
-    bX = width/3
-    bY = height/10
-    bW = width/3
-    bH = height/10
 
     rect(bX, bY, bW, bH)
 
 #haut et bas   
-    if(bY-ballRadius < ballY and bY+ballRadius > ballY and bX+bW+ballRadius > ballX and bX-ballRadius < ballX):
+    if(bY < ballY+ballRadius and bY > ballY-ballRadius and bX+bW > ballX-ballRadius and bX < ballX+ballRadius):
         Bangle = -Bangle
         ballY = bY-ballRadius
-    elif(bY+bH+ballRadius > ballY and bY+bH-ballRadius < ballY and bX+ballRadius < ballX and bX+bW+ballRadius > ballX):
+    elif(bY+bH > ballY-ballRadius and bY+bH < ballY+ballRadius and bX < ballX-ballRadius and bX+bW > ballX-ballRadius):
         Bangle = -Bangle
         ballY = bY+bH+ballRadius
 
 #droite et gauche
-    if(bX-ballRadius < ballX and bX+ballRadius > ballX and bY+bH+ballRadius > ballY and bY+ballRadius < ballY):
+    if(bX < ballX+ballRadius and bX > ballX-ballRadius and bY+bH > ballY-ballRadius and bY < ballY+ballRadius):
         Bangle = PI-Bangle
         ballX = bX-ballRadius
-    elif(bX+bW-ballRadius < ballX and bX+bW+ballRadius > ballX and bY+ballRadius < ballY and bY+bH+ballRadius > ballY):
+    elif(bX+bW < ballX+ballRadius and bX+bW > ballX-ballRadius and bY+ballRadius < ballY-ballRadius and bY+bH+ballRadius > ballY-ballRadius):
         Bangle = PI-Bangle
         ballX = bX+bW+ballRadius
+        
